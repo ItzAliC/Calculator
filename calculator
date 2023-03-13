@@ -1,0 +1,154 @@
+/**
+
+This is a C++ program that implements a 
+calculator with a menu of various arithmetic 
+and mathematical operations that the user can 
+choose from. The program defines four mathematical 
+functions, add(), subtract(), multiply(), and divide(), 
+well as several other functions such as displayMenu() 
+and getInput() that are used to provide the user interface. 
+
+**/
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+// Here we define the functions of the calculator.
+void displayMenu();
+int getInput();
+double add(double num1, double num2);
+double subtract(double num1, double num2);
+double multiply(double num1, double num2);
+double divide(double num1, double num2);
+double add(double num1, double num2) {
+    return num1 + num2;
+}
+
+double subtract(double num1, double num2) {
+    return num1 - num2;
+}
+
+double multiply(double num1, double num2) {
+    return num1 num2;
+}
+
+double divide(double num1, double num2) {
+    return num1 / num2;
+}
+
+//Here we define what each function of the calculator will do.
+//The isnan function returns when x is not a number value.
+int main() {
+    char choice;
+    double num1, num2, result;
+    bool done = false;
+
+    while (!done) {
+        displayMenu();
+        cin >> choice;
+
+        switch (choice) {
+            case '1':
+                num1 = getInput();
+                num2 = getInput();
+                result = add(num1, num2);
+                cout << "Result: " << result << endl;
+                break;
+            case '2':
+                num1 = getInput();
+                num2 = getInput();
+                result = subtract(num1, num2);
+                cout << "Result: " << result << endl;
+                break;
+            case '3':
+                num1 = getInput();
+                num2 = getInput();
+                result = multiply(num1, num2);
+                cout << "Result: " << result << endl;
+                break;
+            case '4':
+                num1 = getInput();
+                num2 = getInput();
+                result = divide(num1, num2);
+                if (isnan(result)) {
+                    cout << "Error: Division by zero" << endl;
+                } else {
+                    cout << "Result: " << result << endl;
+                }
+                break;
+            case '5':
+                num1 = getInput();
+                result = sqrt(num1);
+                if (isnan(result)) {
+                    cout << "Error: Invalid input" << endl;
+                } else {
+                    cout << "Result: " << result << endl;
+                }
+                break;
+            case '6':
+                num1 = getInput();
+                result = pow(num1, 2);
+                cout << "Result: " << result << endl;
+                break;
+            case '7':
+                num1 = getInput();
+                num2 = getInput();
+                result = pow(num1, num2);
+                cout << "Result: " << result << endl;
+                break;
+            case '8':
+                num1 = getInput();
+                result = 1 / num1;
+                if (isnan(result)) {
+                    cout << "Error: Division by zero" << endl;
+                } else {
+                    cout << "Result: " << result << endl;
+                }
+                break;
+            case '9':
+                num1 = getInput();
+                result = num1 / 100;
+                cout << "Result: " << result << endl;
+                break;
+            case '0':
+                done = true;
+                break;
+            default:
+                cout << "Invalid input" << endl;
+        }
+    }
+
+    return 0;
+}
+
+// Here I create the list for the functions that I just defined for the user to choose.
+void displayMenu() {
+    cout << "Ali's Calculator Program" << endl;
+    cout << "------------------" << endl;
+    cout << "1. Add" << endl;
+    cout << "2. Subtract" << endl;
+    cout << "3. Multiply" << endl;
+    cout << "4. Divide" << endl;
+    cout << "5. Square root" << endl;
+    cout << "6. Square" << endl;
+    cout << "7. Power" << endl;
+    cout << "8. Inverse" << endl;
+    cout << "9. Percent" << endl;
+    cout << "0. Exit" << endl;
+    cout << "Enter your choice: ";
+}
+
+int getInput() {
+    int num;
+    cout << "Enter a number: ";
+    cin >> num;
+    while (cin.fail()) {
+        cin.clear();
+        cin.ignore(256, '\n');
+        cout << "Invalid input. Please enter a number: ";
+        cin >> num;
+    }
+    return num;
+}
